@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOLIPOP</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Website</h1>
+    </header>
+    
+    <main>
+        <table border="1" style="width: 100%;">
+            <tr>
+                <th>Stack</th>
+                <th>Code Example</th>
+            </tr>
+            <tr>
+                <td>stack menggunakan array</td>
+                <td><pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int s[5], t=-1;
+
+void push() {
+    if(t==4) cout&lt;&lt;"Stack penuh!\n";
+    else { cin&gt;&gt;s[++t]; cout&lt;&lt;"Ditambahkan\n"; }
+}
+
+void pop() {
+    if(t==-1) cout&lt;&lt;"Stack kosong!\n";
+    else cout&lt;&lt;s[t--]&lt;&lt;" dihapus\n";
+}
+
+void lihat() {
+    if(t==-1) cout&lt;&lt;"Stack kosong\n";
+    else {
+        cout&lt;&lt;"Stack: ";
+        for(int i=t;i&gt;=0;i--) cout&lt;&lt;s[i]&lt;&lt;" ";
+        cout&lt;&lt;endl;
+    }
+}
+
+int main() {
+    int p;
+    while(1) {
+        cout&lt;&lt;"\n1.Push\n2.Pop\n3.Lihat\n4.Keluar\nPilih: ";
+        cin&gt;&gt;p;
+        if(p==4) break;
+        switch(p) {
+            case 1: push(); break;
+            case 2: pop(); break;
+            case 3: lihat(); break;
+            default: cout&lt;&lt;"Salah!\n";
+        }
+    }
+    return 0;
+}</code></pre></td>
+            </tr>
+            <tr>
+                <td>stack menggunakan linked list</td>
+                <td><pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int nilai;
+    Node* berikutnya;
+};
+
+Node* atas = nullptr;
+
+void push() {
+    Node* nodeBaru = new Node();
+    cout &lt;&lt; "Masukkan nilai: ";
+    cin &gt;&gt; nodeBaru-&gt;nilai;
+    nodeBaru-&gt;berikutnya = atas;
+    atas = nodeBaru;
+    cout &lt;&lt; "Ditambahkan\n";
+}
+
+void pop() {
+    if (atas == nullptr) {
+        cout &lt;&lt; "Stack kosong!\n";
+    } else {
+        Node* temp = atas;
+        cout &lt;&lt; temp-&gt;nilai &lt;&lt; " dihapus\n";
+        atas = atas-&gt;berikutnya;
+        delete temp;
+    }
+}
+
+void lihat() {
+    if (atas == nullptr) {
+        cout &lt;&lt; "Stack kosong\n";
+    } else {
+        cout &lt;&lt; "Stack: ";
+        Node* saatIni = atas;
+        while (saatIni != nullptr) {
+            cout &lt;&lt; saatIni-&gt;nilai &lt;&lt; " ";
+            saatIni = saatIni-&gt;berikutnya;
+        }
+        cout &lt;&lt; endl;
+    }
+}
+
+int main() {
+    int pilihan;
+    while(true) {
+        cout &lt;&lt; "\n1.Push\n2.Pop\n3.Lihat\n4.Keluar\nPilih: ";
+        cin &gt;&gt; pilihan;
+        if(pilihan == 4) break;
+        switch(pilihan) {
+            case 1: push(); break;
+            case 2: pop(); break;
+            case 3: lihat(); break;
+            default: cout &lt;&lt; "Pilihan salah!\n";
+        }
+    }
+    
+    while(atas != nullptr) {
+        Node* temp = atas;
+        atas = atas-&gt;berikutnya;
+        delete temp;
+    }
+    
+    return 0;
+}
+<tr>
+                <td>stack menggunakan STL</td>
+                <td><pre><code>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+using namespace std;
+
+stack&lt;int&gt; st;
+
+void push() {
+    int value;
+    cout &lt;&lt; "Masukkan angka: ";
+    cin &gt;&gt; value;
+    st.push(value);
+}
+
+void pop() {
+    if (st.empty()) {
+        cout &lt;&lt; "Stack kosong!\n";
+        return;
+    }
+    cout &lt;&lt; st.top() &lt;&lt; " dihapus\n";
+    st.pop();
+}
+
+void show() {
+    if (st.empty()) {
+        cout &lt;&lt; "Stack kosong\n";
+        return;
+    }
+
+    stack&lt;int&gt; temp = st;
+    cout &lt;&lt; "Isi stack: ";
+    
+    while (!temp.empty()) {
+        cout &lt;&lt; temp.top() &lt;&lt; " ";
+        temp.pop();
+    }
+    cout &lt;&lt; endl;
+}
+
+int main() {
+    int choice;
+    while (true) {
+        cout &lt;&lt; "\n1. Push\n2. Pop\n3. Lihat\n4. Keluar\nPilihan: ";
+        cin &gt;&gt; choice;
+        
+        if (choice == 4) break;
+        
+        switch (choice) {
+            case 1: push(); break;
+            case 2: pop(); break;
+            case 3: show(); break;
+            default: cout &lt;&lt; "Input salah!\n";
+        }
+    }
+    return 0;
+}</code></pre></td>
+            </tr>
+        </table>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 My Website @Komporgas0221@gmail.com</p>
+    </footer>
+</body>
+</html>
